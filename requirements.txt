@@ -1,0 +1,24 @@
+# Idea Survey Pipeline — Python requirements
+# Install:  pip install -r requirements.txt
+# Python >= 3.9
+#
+# Note: the literature fetchers (arXiv, Semantic Scholar, BibTeX) use only the
+# Python standard library, so a metadata-only run needs none of these. Each
+# package below is imported lazily by the tool(s) that need it.
+
+# --- Baseline: covers the common path (figures + vision/legacy PDF + symbolic derivation) ---
+Pillow            # image preprocessing & figure handling (image_preprocessor, pdf_full_parser)
+PyMuPDF           # legacy PDF figure extraction + vision-path page rendering (imported as `fitz`)
+sympy             # symbolic derivation runner (analytic-derivation, derivation-refine-loop)
+
+# --- Optional: only needed for specific sources / backends ---
+pdf2image         # fallback for image preprocessing (also needs the `poppler` system binary)
+exa-py            # Exa web-search source (research-lit --sources exa)
+deepxiv           # DeepXiv source (provides a CLI)
+
+# --- Heavy / optional: full-fidelity non-arXiv PDF parsing (MinerU path) ---
+# MinerU downloads ~5 GB of model weights on first run and is CPU-heavy. Skip it
+# on MacBook Air / CPU-only machines and use `--pdf-parser vision` instead.
+# Uncomment to enable the `full` PDF backend:
+# mineru[core]
+# pix2tex         # optional equation-OCR fallback used by the MinerU path

@@ -66,6 +66,8 @@ Unlike the four pipeline skills — which run for hours and target overnight exe
 ```
 .
 ├── README.md                          # This file
+├── LICENSE                            # MIT (this project) + upstream ARIS credit
+├── requirements.txt                   # Python dependencies
 ├── .kimi/
 │   └── skills/                        # The 8 Skills (loaded by Kimi CLI) — canonical location
 │       ├── idea-landscape/SKILL.md
@@ -104,6 +106,50 @@ Unlike the four pipeline skills — which run for hours and target overnight exe
 ├── tools/                             # 17 Python tools (see Tool Reference) + tools/tests/ self-test fixtures
 └── templates/                         # 14 output templates (see Templates)
 ```
+
+---
+
+## Requirements & Installation
+
+**Python ≥ 3.9.** The literature fetchers (arXiv, Semantic Scholar, BibTeX) use only the standard library, so a metadata-only run needs no third-party packages. The packages below are imported lazily by the tools that need them.
+
+```bash
+# Baseline — covers the common path (figures + vision/legacy PDF + symbolic derivation)
+pip install -r requirements.txt
+# ...or explicitly:
+pip install Pillow PyMuPDF sympy
+
+# Optional, per source / backend
+pip install pdf2image            # fallback for image preprocessing (needs poppler)
+pip install exa-py               # Exa web-search source
+pip install deepxiv              # DeepXiv source (CLI)
+
+# Optional, heavy — full-fidelity non-arXiv PDF parsing (skip on MacBook Air / CPU-only)
+pip install -U "mineru[core]"    # ~5 GB weights on first run
+pip install "pix2tex"            # equation-OCR fallback for the MinerU path
+```
+
+**System binaries** (for figure / PDF handling — install what your backend needs):
+
+```bash
+# Ubuntu / Debian
+apt-get install ghostscript poppler-utils
+apt-get install imagemagick        # optional fallback
+
+# macOS
+brew install ghostscript poppler
+brew install imagemagick           # optional fallback
+```
+
+**LaTeX toolchain** — only for `research-proposal` with `compile: true`: `xelatex` + `biber` (TeX Live / MacTeX), plus `ctex` for Chinese-language proposals. Without them, pass `— compile: false`; the `.tex` source is always the primary deliverable.
+
+| What you run | What to install |
+|---|---|
+| Metadata-only search (`research-lit`, fetchers) | nothing (stdlib only) |
+| `idea-*` with `pdf-parser: vision` or `legacy` | `Pillow`, `PyMuPDF` |
+| `idea-*` with `pdf-parser: full` (MinerU) | `mineru[core]` (+ optional `pix2tex`); GPU recommended |
+| `analytic-derivation` / `derivation-refine-loop` | `sympy` |
+| `research-proposal — compile: true` | `xelatex` + `biber` (+ `ctex` for zh) |
 
 ---
 
