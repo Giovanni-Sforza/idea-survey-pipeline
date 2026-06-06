@@ -1,6 +1,6 @@
 # Idea Survey Pipeline — Self-Contained Package
 
-A **self-contained, portable** toolkit for AI-assisted research **idea validation** and **literature survey**, adapted for Kimi from [ARIS (Auto-Research-In-Sleep)](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep). Where ARIS targets **Claude Code**, this package is built for **Kimi CLI**, which is cheaper to run. It runs as a set of YAML-frontmatter *Skills* that orchestrate specialized *subagents*. The domain emphasis is theoretical / phenomenological physics — especially HEP × heavy-ion × deep-learning crossover — but the three `idea-*` survey skills work for general ML / LLM topics too.
+A **self-contained, portable** toolkit for AI-assisted research **idea validation** and **literature survey**, built for **Kimi CLI**. The project grew out of [ARIS (Auto-Research-In-Sleep)](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep) (which targets **Claude Code**), but only the minimal, metadata-only core of `research-lit` is adapted from ARIS — the other skills, and `research-lit`'s recommended deep-analysis workflow, are original work. Kimi CLI is also the cheaper runtime. The package runs as a set of YAML-frontmatter *Skills* that orchestrate specialized *subagents*. The domain emphasis is theoretical / phenomenological physics — especially HEP × heavy-ion × deep-learning crossover — but the three `idea-*` survey skills work for general ML / LLM topics too.
 
 Use this package to:
 
@@ -18,7 +18,7 @@ Use this package to:
 
 ## What's Inside
 
-**8 Skills**, **17 Tools**, **14 Templates**, and **1 main-agent + 22 subagent role definitions**, all extracted from the main ARIS system.
+**8 Skills**, **17 Tools**, **14 Templates**, and **1 main-agent + 22 subagent role definitions**. Almost all of it is original to this package; only the minimal, metadata-only base of `research-lit` was adapted from ARIS (see [Relationship to ARIS](#relationship-to-aris)).
 
 The skills fall into three groups:
 
@@ -110,6 +110,22 @@ Unlike the four pipeline skills — which run for hours and target overnight exe
 ---
 
 ## Requirements & Installation
+
+### Step 0 — install Kimi Code CLI
+
+These Skills run inside **Kimi CLI (Kimi Code)**, Moonshot AI's terminal agent — install it first ([repo](https://github.com/MoonshotAI/kimi-cli) · [docs](https://moonshotai.github.io/kimi-cli/en/)):
+
+```bash
+# macOS / Linux
+curl -LsSf https://code.kimi.com/install.sh | bash
+
+# Windows (PowerShell)
+Invoke-RestMethod https://code.kimi.com/install.ps1 | Invoke-Expression
+```
+
+On first launch run `/login` to configure your API source (Kimi Code is the recommended, low-cost provider). The 8 Skills live in this package's `.kimi/skills/`, so launch Kimi CLI from the package root for it to load them as project skills, then invoke any skill explicitly as shown in [Usage](#usage--every-invocation-in-one-place). See the official docs for the latest install options.
+
+### Python & system packages
 
 **Python ≥ 3.9.** The literature fetchers (arXiv, Semantic Scholar, BibTeX) use only the standard library, so a metadata-only run needs no third-party packages. The packages below are imported lazily by the tools that need them.
 
@@ -691,11 +707,16 @@ Old kimi-cli defaulted to 100 steps, which pauses virtually every skill here —
 
 ---
 
-## Relationship to the Main ARIS System
+## Relationship to ARIS
 
-This package is a **portable, Kimi-adapted snapshot** of the idea-survey + derivation capability from the ARIS codebase. ARIS itself targets Claude Code; this package is adapted for Kimi CLI (cheaper to run) and is self-contained: the 8 skills (`.kimi/skills/`), their tools (`tools/`), templates (`templates/`), the main-agent definition (`agents/aris-kimi.{md,yaml}`), and all subagent role definitions (`agents/subagents/`, including the `.md` roles and the 9 `.yaml` registrations) are all present and runnable on Kimi CLI.
+This project **grew out of** [ARIS (Auto-Research-In-Sleep)](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep) by wanshuiyin — an autonomous overnight-research system built on **Claude Code** — but it is largely independent of it. The only piece adapted from ARIS is the **minimal, metadata-only base of `research-lit`** (plain literature search). Everything else is original work built for **Kimi CLI**:
 
-It does **not** include other ARIS skills (e.g. `research-refine`, `experiment-plan`, `paper-write`) or the full ARIS orchestrator runtime. If you are running inside the full ARIS system, use the skills from there; use this package when you need a standalone copy for review, modification, or deployment elsewhere.
+- the four-stage survey pipeline (`idea-landscape` → `idea-novelty` → `idea-feasibility` → `research-proposal`), including the Step 4.6 loop expansion and the `paper_card.json` progressive-disclosure design;
+- `research-debug`, the interactive L0/L1/L2 helper;
+- the entire symbolic-derivation track (`analytic-derivation` + `derivation-refine-loop`, including the v2 axiom-explore pipeline);
+- `research-lit`'s **recommended** usage — `/skill:research-lit "..." — deep analyze: true` — and all of its per-paper deep-analysis, figure/equation extraction, and multi-backend PDF logic.
+
+So while the name (`aris-kimi`) and a handful of conventions trace back to ARIS, the core capability of this package does not depend on it. ARIS is **not a dependency** — you do not need it installed to run anything here — and is credited as the origin in [Citation & License](#citation--license).
 
 > Note: `agents/aris-kimi.yaml` registers the 9 subagents that the survey skills dispatch (paper-analyzer, paper-editor, novelty-checker, experiment-auditor, hep-reviewer, hep-theory-reviewer, proof-reviewer, research-reviewer, patent-examiner). The derivation-track subagents (`theory-synthesizer*`, `derivation-reviewer*`, `refinement-router`, `lit-verifier`, `axiom-explorer`, `sister-comparator`) are dispatched by name from within the derivation skills and have `.md` role definitions only.
 
@@ -703,7 +724,7 @@ It does **not** include other ARIS skills (e.g. `research-refine`, `experiment-p
 
 ## Citation & License
 
-This project is a derivative and Kimi adaptation of [ARIS (Auto-Research-In-Sleep)](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep). ARIS is built on **Claude Code**; this package is adapted for **Kimi CLI**, which is cheaper to run.
+This project **grew out of** [ARIS (Auto-Research-In-Sleep)](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep) (built on **Claude Code**) and adapts ARIS's minimal `research-lit` core; the rest of the skills and logic are original work built for **Kimi CLI**, which is cheaper to run. ARIS is credited here as the origin, not as a dependency.
 
 - **Upstream repository**: https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep
 - **License**: [MIT License](LICENSE)
@@ -721,7 +742,7 @@ If you use this work, please cite the upstream project:
 
 ### Acknowledgments
 
-Sincere thanks to **wanshuiyin**, author of the upstream ARIS project, on which this package is based.
+Sincere thanks to **wanshuiyin**, author of the ARIS project, from which this package grew and whose `research-lit` core it adapts.
 
 ---
 

@@ -22,6 +22,8 @@ SOFTWARE.
 
 ---
 
-This project is a derivative work of ARIS (Auto-Research-In-Sleep) by wanshuiyin
-(https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep), originally
-released under the MIT License. Sincere thanks to the original author.
+This project grew out of ARIS (Auto-Research-In-Sleep) by wanshuiyin
+(https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep), released under the
+MIT License, and adapts a small portion of it (the minimal, metadata-only core of the
+research-lit tooling). The remaining skills and logic in this package are original work.
+Sincere thanks to the original author.
