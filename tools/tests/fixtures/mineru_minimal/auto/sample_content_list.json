@@ -1,0 +1,42 @@
+[
+  {"type": "title", "text": "A Toy Physics Paper", "level": 1, "page_idx": 1},
+  {"type": "text", "text": "We study the spectrum predicted by Equation 1 and shown in Figure 1.", "page_idx": 1},
+  {
+    "type": "equation",
+    "text": "$$E_n = -\\frac{m e^4}{2 \\hbar^2 n^2}$$",
+    "page_idx": 1
+  },
+  {"type": "text", "text": "Table 1 summarizes the measured ratios. The agreement with the model in Fig. 1 is excellent.", "page_idx": 2},
+  {
+    "type": "image",
+    "img_path": "images/fig_spectrum.png",
+    "img_caption": ["Figure 1: Measured spectrum compared against the Bohr model prediction."],
+    "page_idx": 2
+  },
+  {"type": "text", "text": "Some unrelated narrative paragraph about apparatus calibration.", "page_idx": 2},
+  {
+    "type": "image",
+    "img_path": "images/fig_drift.png",
+    "page_idx": 3
+  },
+  {"type": "text", "text": "Figure 2: Drift of the detector gain over a 48-hour acquisition window.", "page_idx": 3},
+  {
+    "type": "table",
+    "img_path": "images/tab_ratios.png",
+    "table_body": "<table><tr><td>line</td><td>ratio</td></tr><tr><td>H-alpha</td><td>1.02</td></tr></table>",
+    "table_caption": ["Table 1: Line ratios for the principal Balmer transitions."],
+    "page_idx": 4
+  },
+  {
+    "type": "equation",
+    "text": "$$\\sigma = \\sqrt{\\frac{1}{N}\\sum_{i=1}^N (x_i - \\bar{x})^2}$$",
+    "page_idx": 4
+  },
+  {
+    "type": "equation",
+    "text": "$$ {",
+    "img_path": "images/broken_eq.png",
+    "page_idx": 5
+  },
+  {"type": "text", "text": "Equation 3 is intentionally garbled to exercise the fallback path.", "page_idx": 5}
+]

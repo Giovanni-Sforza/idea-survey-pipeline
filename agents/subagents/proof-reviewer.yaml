@@ -1,0 +1,5 @@
+version: 1
+agent:
+  extend: ../aris-kimi.yaml
+  name: proof-reviewer
+  system_prompt_path: ./proof-reviewer.md

@@ -1,0 +1,33 @@
+version: 1
+agent:
+  extend: default
+  name: aris-kimi
+  system_prompt_path: ./aris-kimi.md
+  subagents:
+    research-reviewer:
+      path: ./subagents/research-reviewer.yaml
+      description: "Senior ML reviewer for adversarial research review (NeurIPS/ICML level)"
+    novelty-checker:
+      path: ./subagents/novelty-checker.yaml
+      description: "Novelty verification expert against prior art"
+    experiment-auditor:
+      path: ./subagents/experiment-auditor.yaml
+      description: "Experiment integrity and fraud-pattern auditor"
+    paper-editor:
+      path: ./subagents/paper-editor.yaml
+      description: "Academic paper writing and editing specialist"
+    patent-examiner:
+      path: ./subagents/patent-examiner.yaml
+      description: "Patent examiner for novelty and non-obviousness assessment"
+    proof-reviewer:
+      path: ./subagents/proof-reviewer.yaml
+      description: "Mathematical proof rigorous reviewer"
+    hep-reviewer:
+      path: ./subagents/hep-reviewer.yaml
+      description: "Senior phenomenology reviewer for HEP research (Phys. Rev. D, JHEP, EPJC)"
+    hep-theory-reviewer:
+      path: ./subagents/hep-theory-reviewer.yaml
+      description: "Senior theoretical physics reviewer for HEP theory (JHEP, Nucl. Phys. B)"
+    paper-analyzer:
+      path: ./subagents/paper-analyzer.yaml
+      description: "Expert academic paper analyst for deep figure-by-figure and table-by-table interpretation"

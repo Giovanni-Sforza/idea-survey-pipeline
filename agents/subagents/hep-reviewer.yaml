@@ -1,0 +1,5 @@
+version: 1
+agent:
+  extend: ../aris-kimi.yaml
+  name: hep-reviewer
+  system_prompt_path: ./hep-reviewer.md

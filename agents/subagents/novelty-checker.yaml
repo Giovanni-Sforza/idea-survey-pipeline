@@ -1,0 +1,5 @@
+version: 1
+agent:
+  extend: ../aris-kimi.yaml
+  name: novelty-checker
+  system_prompt_path: ./novelty-checker.md

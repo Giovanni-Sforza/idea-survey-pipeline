@@ -1,0 +1,5 @@
+version: 1
+agent:
+  extend: ../aris-kimi.yaml
+  name: paper-analyzer
+  system_prompt_path: ./paper-analyzer.md

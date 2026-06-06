@@ -1,0 +1,5 @@
+version: 1
+agent:
+  extend: ../aris-kimi.yaml
+  name: patent-examiner
+  system_prompt_path: ./patent-examiner.md

@@ -1,0 +1,165 @@
+\documentclass[11pt,a4paper]{article}
+
+% ============================================================
+% Language-specific preamble (injected by skill, see SKILL.md §6).
+% For English: \usepackage[utf8]{inputenc}\usepackage[T1]{fontenc}\usepackage{lmodern}
+% For Chinese: \usepackage{ctex}
+% ============================================================
+<<LANGUAGE_PREAMBLE>>
+
+% ============================================================
+% Common packages
+% ============================================================
+\usepackage{geometry}
+\geometry{
+    a4paper,
+    left=2.5cm,
+    right=2.5cm,
+    top=2.5cm,
+    bottom=2.5cm,
+}
+
+% Math
+\usepackage{amsmath,amsfonts,amssymb,amsthm}
+\usepackage{bm}
+
+% Figures & tables
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{caption}
+\usepackage{subcaption}
+
+% Algorithms
+\usepackage{algorithm}
+\usepackage{algorithmic}
+
+% Lists
+\usepackage{enumitem}
+\setlist{nosep}
+
+% Hyperlinks
+\usepackage{hyperref}
+\usepackage{xcolor}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue,
+}
+
+% Bibliography
+\usepackage[backend=biber,style=numeric-comp,sorting=none]{biblatex}
+\addbibresource{references.bib}
+
+% Paragraph spacing (parskip already handles \parindent=0 + spacing; do not double-set)
+\usepackage{parskip}
+
+% Section formatting
+\usepackage{titlesec}
+\titleformat{\section}{\Large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\large\bfseries}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}{\normalsize\bfseries}{\thesubsubsection}{1em}{}
+
+% Custom commands
+%   \needfix{...} — proposal-specific TODO marker; chosen to avoid colliding
+%   with the \todo command from the popular `todonotes` package.
+\newcommand{\needfix}[1]{\textcolor{red}{\textbf{[NEEDFIX: #1]}}}
+
+% Line spacing
+\usepackage{setspace}
+\onehalfspacing
+
+% ============================================================
+% Document metadata
+% ============================================================
+\title{\textbf{<<TITLE>>}}
+\author{<<AUTHOR>>}
+\date{<<DATE>>}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+\noindent
+<<ABSTRACT>>
+\end{abstract}
+
+\tableofcontents
+\newpage
+
+% ============================================================
+% Section 1: Introduction and Motivation
+% ============================================================
+\section{<<SEC1_TITLE>>}
+\label{sec:introduction}
+
+\input{body/sec1_introduction}
+
+% ============================================================
+% Section 2: Related Work and Literature Review
+% ============================================================
+\section{<<SEC2_TITLE>>}
+\label{sec:related-work}
+
+\input{body/sec2_related_work}
+
+% ============================================================
+% Section 3: Research Objectives
+% ============================================================
+\section{<<SEC3_TITLE>>}
+\label{sec:objectives}
+
+\input{body/sec3_objectives}
+
+% ============================================================
+% Section 4: Methodology and Technical Approach
+% ============================================================
+\section{<<SEC4_TITLE>>}
+\label{sec:methodology}
+
+\input{body/sec4_methodology}
+
+% ============================================================
+% Section 5: Innovation Points (Chinese: 研究特色与创新之处;
+%                                English: optional — keep file empty
+%                                or write a short innovations subsection)
+% ============================================================
+\section{<<SEC5_TITLE>>}
+\label{sec:innovation}
+
+\input{body/sec5_innovation}
+
+% ============================================================
+% Section 6: Feasibility Analysis
+% ============================================================
+\section{<<SEC6_TITLE>>}
+\label{sec:feasibility}
+
+\input{body/sec6_feasibility}
+
+% ============================================================
+% Section 7: Timeline and Milestones
+% ============================================================
+\section{<<SEC7_TITLE>>}
+\label{sec:timeline}
+
+\input{body/sec7_timeline}
+
+% ============================================================
+% Section 8: Expected Results and Impact
+% ============================================================
+\section{<<SEC8_TITLE>>}
+\label{sec:expected-results}
+
+\input{body/sec8_expected}
+
+% ============================================================
+% References
+% ============================================================
+\newpage
+\printbibliography[title=<<BIB_TITLE>>]
+
+\end{document}
